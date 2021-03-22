@@ -1,0 +1,8 @@
+<input name="searchQuery" placeholder="Enter city name..." [(ngModel)]="query" (keyDown.enter)="search(query)">
+<button [disabled]="!query" (click)="search(query)">Show weather</button>
+
+<ul>
+  <li *ngFor="let city of cities">
+    <a routerLink="city/{{city}}">{{ city }}</a>
+  </li>
+</ul>
