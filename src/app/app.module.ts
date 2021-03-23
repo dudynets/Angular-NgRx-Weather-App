@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const appRoutes: Routes =[
   { path: '', component: ListComponent},
@@ -39,6 +40,7 @@ const appRoutes: Routes =[
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([AppEffects]),
     StoreRouterConnectingModule.forRoot(),
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

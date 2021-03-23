@@ -5,6 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { WeatherState } from '../reducers/weather/weather.reducer';
 import { GetWeatherAction } from '../reducers/weather/weather.actions';
 import { selectWeatherState } from '../reducers/weather/weather.selector';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-city',
@@ -22,10 +23,17 @@ export class CityComponent implements OnInit {
   }
 
   public weather$: Observable<WeatherState> = this.store$.pipe(
-    select(selectWeatherState)
+    select(selectWeatherState),
+    tap(v => {
+      console.log(v)
+    })
   );
 
   ngOnInit(): void {
     this.store$.dispatch(new GetWeatherAction(this.city));
+  }
+
+  getIconUrl(code: string) {
+    return `http://openweathermap.org/img/wn/${code}@2x.png`
   }
 }

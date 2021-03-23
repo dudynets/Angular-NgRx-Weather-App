@@ -1,0 +1,33 @@
+input {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+    height: 40px;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+    height: 40px;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+ul {
+    display: block;
+    text-align: center;
+    list-style-type: none;
+    
+    li a {
+        color: black;
+        text-decoration: none;
+    }
+        
+    li a:hover {
+        text-decoration: underline;
+    }
+}

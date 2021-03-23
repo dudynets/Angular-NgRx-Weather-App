@@ -1,37 +1,57 @@
-<a routerLink="">Home</a>
+<div class="goHome">
+  <a routerLink="">Home</a>
+</div>
 
 <div *ngIf="weather$ | async as weather">
   <div *ngIf="!weather.loading; else loadingText">
-    <h3>City: {{ weather.data.city }}</h3>
-    <p>Timezone: {{ weather.data.timezone }}</p>
+    <div class="details">
+      <h3>City: {{ weather.data.city }}</h3>
+      <p><b>Timezone:</b> {{ weather.data.timezone }}</p>
+    </div>
 
-    <hr>
-    <hr>
+    <hr noshade size="1px" color="black" >
 
-    <h3>Current weather:</h3>
-    <p>Time: {{ weather.data.current.datetime | date:'HH:mm:ss' }}</p>
-    <p>Temperature: {{ weather.data.current.temp }} °C</p>
-    <p>Humidity: {{ weather.data.current.humidity }}%</p>
-    <p>Pressure: {{ weather.data.current.pressure }} hPa</p>
-    <p>UV index: {{ weather.data.current.uvi }}</p>
+    <h2>Current weather:</h2>
+    <div class="weatherItem">
+      <i class="{{ weather.data.current.icon }}"></i>
+      <h3 class="weatherState"><u>{{ weather.data.current.datetime | date:'HH:mm:ss' }}</u> | {{ weather.data.current.desc }} </h3>
+      <p><b>Temperature:</b> {{ weather.data.current.temp | number: '1.0-0' }} °C</p>
+      <p><b>Humidity:</b> {{ weather.data.current.humidity }}%</p>
+      <p><b>Pressure:</b> {{ weather.data.current.pressure }} hPa</p>
+      <p><b>UV index:</b> {{ weather.data.current.uvi | number: '1.0-1' }}</p>
+    </div>
 
-    <hr>
-    <hr>
+    <hr noshade size="1px" color="black" >
 
-    <h3>Daily weather:</h3>
+    <h2>Daily weather:</h2>
     <div *ngFor="let weatherDay of weather.data.daily">
-      <p>Date: {{ weatherDay.datetime | date:'MMM d'}}</p>
-      <p>Temperature: {{ weatherDay.temp }} °C</p>
-      <p>Humidity: {{ weatherDay.humidity }}%</p>
-      <p>Pressure: {{ weatherDay.pressure }} hPa</p>
-      <p>UV index: {{ weatherDay.uvi }}</p>
-      <hr>
+      <div class="weatherItem">
+        <i class="{{ weatherDay.icon }}"></i>
+        <h3 class="weatherState"><u>{{ weatherDay.datetime | date:'MMM d' }}</u> | {{ weatherDay.desc }}</h3>
+        <p><b>Temperature:</b> {{ weatherDay.temp | number: '1.0-0' }} °C</p>
+        <p><b>Humidity:</b> {{ weatherDay.humidity }}%</p>
+        <p><b>Pressure:</b> {{ weatherDay.pressure }} hPa</p>
+        <p><b>UV index:</b> {{ weatherDay.uvi | number: '1.0-1' }}</p>
+        <!-- <hr noshade size="1px" color="black" > -->
+      </div>
     </div>
   </div>
 </div>
 
 <ng-template #loadingText>
-  <h3>
+  <h3 class="loading">
     Loading...
   </h3>
 </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+

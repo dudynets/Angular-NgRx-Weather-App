@@ -16,6 +16,8 @@ export const initialState: WeatherState = {
       city: "",
       timezone: "",
       current: {
+        desc: "",
+        icon: "",
         datetime: new Date(),
         temp: 0,
         pressure: 0,
@@ -24,6 +26,8 @@ export const initialState: WeatherState = {
         clouds: 0
       },
       daily: [{
+        desc: "",
+        icon: "",
         datetime: new Date(),
         temp: 0,
         pressure: 0,

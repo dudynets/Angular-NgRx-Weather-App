@@ -7,6 +7,8 @@ export interface CityWeather {
   city: string,
   timezone: string,
   current: {
+    desc: string,
+    icon: string,
     datetime: Date,
     temp: number,
     pressure: number,
@@ -15,6 +17,8 @@ export interface CityWeather {
     clouds: number
   },
   daily: {
+    desc: string,
+    icon: string,
     datetime: Date,
     temp: number,
     pressure: number,
@@ -74,10 +78,13 @@ export class WeatherService {
           return this.http.get(this.WEATHER_URL, {params})
             .pipe(
               map(data => {
+                console.log(data)
                 let cityWeather: CityWeather = {
                   city: correctCity,
                   timezone: data['timezone'],
                   current: {
+                    desc: data['current']['weather'][0]['main'],
+                    icon: this.getWeatherIcon(data['current']['weather'][0]['icon']),
                     datetime: new Date(data['current']['dt'] * 1000),
                     temp: data['current']['temp'],
                     pressure: data['current']['pressure'],
@@ -90,6 +97,8 @@ export class WeatherService {
                 for (let dayWeather in data['daily']) {
                   let dayWeatherItem = data['daily'][dayWeather]
                   let formattedDayWeatherItem = {
+                    desc: dayWeatherItem['weather'][0]['main'],
+                    icon: this.getWeatherIcon(dayWeatherItem['weather'][0]['icon']),
                     datetime: new Date(dayWeatherItem['dt'] * 1000),
                     temp: dayWeatherItem['temp']['day'],
                     pressure: dayWeatherItem['pressure'],
@@ -104,6 +113,24 @@ export class WeatherService {
             );
         })
       )
+  }
+
+  getWeatherIcon(code: string) {
+    if (code == '11d' || code == '11n') {
+      return 'fas fa-bolt'
+    } else if (code == '09d' || code == '10d' || code == '13d' || code == '09n' || code == '10n' || code == '13n') {
+      return 'fas fa-cloud-rain'
+    } else if (code == '13d' || code == '13n') {
+      return 'far fa-snowflake'
+    } else if (code == '50d' || code == '50n') {
+      return 'fas fa-smog'
+    } else if (code == '01d' || code == '01n') {
+      return 'fas fa-sun'
+    } else if (code == '02d' || code == '02n' || code == '03d' || code == '03n' || code == '04d' || code == '04n') {
+      return 'fas fa-cloud'
+    } else {
+      return 'fas fa-sun'
+    }
   }
 
   get getCities() {
