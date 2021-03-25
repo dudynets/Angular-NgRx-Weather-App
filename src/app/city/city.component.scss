@@ -33,6 +33,11 @@ h2 {
     font-size: 25px;
 }
 
+.daily {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .weatherItem {
     display: flex;
     justify-content: space-around;
@@ -40,4 +45,16 @@ h2 {
     border: 1px solid black;
     padding: 30px;
     margin: 30px;
+}
+
+.weatherDailyItem {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    padding: 30px;
+    margin: 30px;
+    flex: 1 0 12.5%;
 }

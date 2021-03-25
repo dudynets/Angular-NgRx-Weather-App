@@ -24,7 +24,21 @@
     <hr noshade size="1px" color="black" >
 
     <h2>Daily weather:</h2>
-    <div *ngFor="let weatherDay of weather.data.daily">
+
+    <div class="daily">
+      <ng-container *ngFor="let weatherDay of weather.data.daily">
+        <div class="weatherDailyItem">
+          <i class="{{ weatherDay.icon }}"></i>
+          <h3 class="weatherState"><u>{{ weatherDay.datetime | date:'MMM d' }}</u><br>{{ weatherDay.desc }}</h3>
+          <p><b>Temperature:</b><br>{{ weatherDay.temp | number: '1.0-0' }} °C</p>
+          <p><b>Humidity:</b><br>{{ weatherDay.humidity }}%</p>
+          <p><b>Pressure:</b><br>{{ weatherDay.pressure }} hPa</p>
+          <p><b>UV index:</b><br>{{ weatherDay.uvi | number: '1.0-1' }}</p>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- <div *ngFor="let weatherDay of weather.data.daily">
       <div class="weatherItem">
         <i class="{{ weatherDay.icon }}"></i>
         <h3 class="weatherState"><u>{{ weatherDay.datetime | date:'MMM d' }}</u> | {{ weatherDay.desc }}</h3>
@@ -32,9 +46,8 @@
         <p><b>Humidity:</b> {{ weatherDay.humidity }}%</p>
         <p><b>Pressure:</b> {{ weatherDay.pressure }} hPa</p>
         <p><b>UV index:</b> {{ weatherDay.uvi | number: '1.0-1' }}</p>
-        <!-- <hr noshade size="1px" color="black" > -->
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 
