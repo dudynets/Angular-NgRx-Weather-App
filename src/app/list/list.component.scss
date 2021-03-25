@@ -6,21 +6,61 @@ input {
     height: 40px;
     font-size: 25px;
     margin-bottom: 20px;
+    outline: none;
+    border: 1px solid black;
+    transition: all .2s;
+
+    &::placeholder {
+        color: black;
+    }
+
+    &:focus {
+        background: black;
+        color: white;
+
+        &::placeholder {
+            color: white;
+        }
+    }
 }
 
 button {
     display: block;
     margin: 0 auto;
-    width: 400px;
-    height: 40px;
+    width: 407px;
+    height: 42px;
     font-size: 25px;
     margin-bottom: 20px;
+    background: transparent;
+    color: black;
+    border: 1px solid black;
+    transition: all .2s;
+    outline: none;
+
+    &:hover {
+        color: white;
+        background: black;
+        border: 1px solid black;
+    }
+
+    &:disabled, &[disabled] {
+        opacity: .5;
+        
+        &:hover {
+            opacity: .5;
+            background: transparent;
+            color: black;
+            border: 1px solid black;
+        }
+    }
 }
 
 ul {
     display: block;
     text-align: center;
     list-style-type: none;
+    margin: 0;
+    padding: 0;
     
     li a {
         color: black;
