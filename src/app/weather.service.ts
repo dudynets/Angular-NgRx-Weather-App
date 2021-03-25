@@ -36,7 +36,7 @@ export class WeatherService {
   constructor(private http: HttpClient, private router: Router) { }
 
   private WEATHER_URL: string = 'https://api.openweathermap.org/data/2.5/onecall';
-  private GEOCODING_URL: string = 'http://api.openweathermap.org/geo/1.0/direct';
+  private GEOCODING_URL: string = 'https://api.openweathermap.org/geo/1.0/direct';
   private API_KEY = 'e43d0b2cecf081064da8dca138efb7d1';
   private EXCLUDE = 'minutely,hourly,alerts';
   private UNITS = 'metric';
